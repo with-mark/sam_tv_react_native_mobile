@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "229942515029",
+    "firebase_url": "https://samtv-7b912-default-rtdb.firebaseio.com",
+    "project_id": "samtv-7b912",
+    "storage_bucket": "samtv-7b912.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:229942515029:android:d4ae5b453a08c567aecbdc",
+        "android_client_info": {
+          "package_name": "com.samtvapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "229942515029-sts1m9q20s4t6vteva36q781g5s44s17.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5KArRIFXwaGF7xTbNRvT612JrhSw_NiI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "229942515029-sts1m9q20s4t6vteva36q781g5s44s17.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "229942515029-j8ov13am9g696hpi21n4ltl2maqvqmrv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.SamoatengTV2"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
