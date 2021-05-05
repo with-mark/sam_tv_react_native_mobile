@@ -1,6 +1,6 @@
 import { firebase } from '@react-native-firebase/storage';
 import React, { useEffect, useState } from 'react'
-import { SafeAreaView, ActivityIndicator,View,TouchableOpacity,Text,FlatList,TextInput,Dimensions,StyleSheet, Alert, ScrollView} from 'react-native'
+import { SafeAreaView, ActivityIndicator,View,TouchableOpacity,Text,FlatList,TextInput,Dimensions,StyleSheet,Alert, ScrollView} from 'react-native'
 const screenWidth = Math.round(Dimensions.get('window').width);
 const screenHeight = Math.round(Dimensions.get('window').height);
 const blue = "rgb(0,122,255)"
@@ -112,7 +112,7 @@ const  renderAnnounceList = ({item}) => {
           
                   
                     <View   style={{backgroundColor:'#ff6251',position:'relative',margin:20,height:'auto',width:screenWidth*0.8,borderRadius:20,padding:10,marginBottom:10,display:'flex',flexDirection:'column',justifyContent:'flex-start'}}>
-                        <View style={{position:'absolute',borderWidth:1,borderColor:'#fcfcfc',top:-18,left:'48%',height:32,display:'flex',flexDirection:'row',justifyContent:'center',alignItems:'center',width:32,borderRadius:50,backgroundColor:'white',shadowColor:'lightgrey',shadowRadius:2,shadowOpacity:0.5}}>
+                        <View style={{position:'absolute',borderWidth:1,borderColor:'lightgrey',top:-18,left:'48%',height:32,display:'flex',flexDirection:'row',justifyContent:'center',alignItems:'center',width:32,borderRadius:50,backgroundColor:'white',shadowColor:'lightgrey'}}>
                         
                         <MaterialCommunityIcons color='grey'  name="bullhorn"  size={22} /> 
                         </View>

@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import { Text,View,StyleSheet,ImageBackground,ScrollView,Dimensions,TouchableOpacity,SafeAreaView ,TextInput, Alert} from 'react-native';
+import { Text,View,StyleSheet,ImageBackground,ActionSheetIOS,ScrollView,Dimensions,TouchableOpacity,SafeAreaView ,TextInput, Alert} from 'react-native';
 const screenWidth = Math.round(Dimensions.get('window').width);
 const screenHeight = Math.round(Dimensions.get('window').height);
 import * as Store  from "../../components/async";
@@ -340,7 +340,25 @@ user.updateProfile({
  }
 
 
-
+const onPress=()=>{
+  ActionSheetIOS.showActionSheetWithOptions(
+    {
+      options: ["Cancel", "Open Camera", "Open Photo Library"],
+    
+      cancelButtonIndex: 0,
+      userInterfaceStyle: 'light'
+    },
+    buttonIndex => {
+      if (buttonIndex === 0) {
+        // cancel action
+      } else if (buttonIndex === 1) {
+        snapImage()
+      } else if (buttonIndex === 2) {
+        selectImage()
+      }
+    }
+  );
+}
   return(
       <SafeAreaView style={styles.container}>
         <View style={styles.search}>
@@ -366,8 +384,8 @@ user.updateProfile({
           
           
 
-         <View style={{width:screenWidth,height:150,paddingLeft:20,display:'flex',justifyContent:'flex-start',alignItems:'center',flexDirection:'row',borderColor:"gainsboro"}}>
-         <TouchableOpacity onPress={selectImage} >
+         <View style={{width:screenWidth,height:150,paddingLeft:20,display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'row',borderColor:"gainsboro"}}>
+         <TouchableOpacity onPress={()=>onPress()} >
             <View
               style={{
                 height: 100,
@@ -403,10 +421,7 @@ user.updateProfile({
                 </ImageBackground>
             </View>
           </TouchableOpacity>
-          <View style={{height:100,display:'flex',flexDirection:'column',justifyContent:'flex-start',paddingTop:5}}>
-            <TouchableOpacity onPress={snapImage} style={{width:150,borderStyle:'solid',borderWidth:1,borderColor:'grey',padding:5,marginBottom:5,borderRadius:5}}><Text style={{color:'grey'}}>Open Camera</Text></TouchableOpacity>
-            <TouchableOpacity onPress={selectImage} style={{width:150,borderStyle:'solid',borderWidth:1,borderColor:'grey',padding:5,borderRadius:5}}><Text style={{color:'grey'}}>Open Photo Library</Text></TouchableOpacity>
-          </View>
+         
          </View>
          <View style={{paddingLeft:10}}>
           <TextInput  placeholderTextColor={"grey"} value={username} onChangeText={(e)=>{setUsername(e)}} style={styles.inputone}  placeholder="username "/>
