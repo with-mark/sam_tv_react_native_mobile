@@ -10,32 +10,29 @@ export default async function requestUserPermission () {
 }
 
 getFcmToken = async () => {
-  const fcmToken = await messaging().getToken();
-  if (fcmToken) {
-    console.log('subscribing')
-   subscribe(fcmToken)
-  } else {
-   console.log("Failed", "No token received");
-  }
+  messaging()
+  .subscribeToTopic('samtvlive')
+  .then(() => console.log('Subscribed to topic!'));
+
 }
 
 
-subscribe= async (fcmToken)=>{
-  let booo={
-    token:fcmToken
-  }
+// subscribe= async (fcmToken)=>{
+//   let booo={
+//     token:fcmToken
+//   }
 
-  let body=JSON.stringify(booo)
-  const me= await fetch(`https://us-central1-samtv-7b912.cloudfunctions.net/subscribe`, {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-   body:body
-  }).then((response)=>{
-   //success
-   console.log('subscribed to topic')
-  }).catch((error)=>{
-    //error
-  })
-}
+//   let body=JSON.stringify(booo)
+//   const me= await fetch(`https://us-central1-samtv-7b912.cloudfunctions.net/subscribe`, {
+//     method: 'POST',
+//     headers: {
+//         'Content-Type': 'application/json',
+//     },
+//    body:body
+//   }).then((response)=>{
+//    //success
+//    console.log('subscribed to topic')
+//   }).catch((error)=>{
+//     //error
+//   })
+// }

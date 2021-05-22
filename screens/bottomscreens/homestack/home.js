@@ -488,12 +488,23 @@ export const Home = ({ navigation }) => {
   }, [])
 
   useEffect(() => {
-    const visit=async()=>{
-      const visit = await Store.Get("visited")
-      const visited=JSON.parse(visit)
-      setAnnounce(!visited)
+
+    firestore().collection('announcements').onSnapshot(
+      snapshot=>{
+      snapshot.docChanges().forEach((change) => {
+        if (change.type === "added") {
+            console.log("New city: ", change.doc.data());
+            setAnnounce(true)
+        }
+        if (change.type === "modified") {
+            console.log("Modified city: ", change.doc.data());
+            setAnnounce(true)
+        }
     }
-    visit()
+  
+    )
+  })
+
     const profileGet=async()=>{
       let pro=await Store.Get('profile');
       if(pro!=null){
@@ -503,7 +514,7 @@ export const Home = ({ navigation }) => {
     }
     profileGet()
     const interval = setInterval(() => {
-      visit()
+     
       profileGet()
       const now = new Date().getHours()
       
