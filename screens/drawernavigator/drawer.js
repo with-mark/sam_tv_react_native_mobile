@@ -1,5 +1,5 @@
 
-import React, { Component, useEffect } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { View,Text ,TouchableOpacity,Alert} from 'react-native';
 
 import { createDrawerNavigator, DrawerContentScrollView ,DrawerItemList,DrawerItem} from '@react-navigation/drawer';
@@ -18,6 +18,7 @@ import auth from '@react-native-firebase/auth';
 import GoLive from '../goliveStack';
 import PrayerRequest from '../drawerscreens/prayerRequests';
 import Events from '../drawerscreens/events';
+import firestore from '@react-native-firebase/firestore';
 const blue = "rgb(0,122,255)"
 function CustomDrawerContent({  ...rest }) {
  
@@ -64,6 +65,23 @@ function CustomDrawerContent({  ...rest }) {
   
   
   export default function DrawerScreen({navigation}) {
+    const [live,setLive]=useState('')
+    useEffect(()=>{
+      firestore().collection('live').doc('M6zPN7Af72tKczD7i41E').onSnapshot(
+
+          snapshot=>{
+              let status=snapshot? snapshot.data():null
+              if(status===null){
+
+              }else
+              {
+                Store('live',status.live)
+                setLive(status.live)
+                console.log(status.live)}
+              
+          }
+      )
+  },[])
 
     
     return (
@@ -93,16 +111,6 @@ function CustomDrawerContent({  ...rest }) {
            />
 
 
-          <Drawer.Screen
-           name="Live" 
-           component={Live}
-           options={{
-            title: 'Watch Live',
-             drawerIcon: ({ color,focused, size }) => (
-              <MaterialCommunityIcons color={color} name="television"  size={size} />
-               )
-           }}
-           />
         <Drawer.Screen
            name="PrayerRequest" 
            component={PrayerRequest}

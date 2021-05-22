@@ -1,0 +1,113 @@
+{ 
+  live==='online'&&
+  <View>
+    <View style={{width:screenWidth,justifyContent:"flex-start"}}>
+      <Text style={{fontSize:30,fontWeight:"bold",color:"grey",margin:30,marginBottom:0}}>
+        Live Stream in progress...
+      </Text>
+    </View>
+      <View elevation={5} style={styles.live}>
+<TouchableOpacity style={{padding:10,paddingBottom:0,width:screenWidth,justifyContent:"center",alignItems:"center",width:screenWidth,height:screenHeight*0.45}} onPress={()=>{navigation.navigate('Live');}}>
+        <LivePlayer/>
+  </TouchableOpacity>
+      
+    
+  </View>
+  <View style={{borderWidth:0,padding:30,paddingTop:0,width:screenWidth}}> 
+    <Text style={{fontSize:20,padding:10}}>
+    Click the above image to join the stream
+
+    </Text>
+    <Text style={{padding:10,color:"grey"}}>
+    
+
+    SAMTV weekly is our Prophetic channel to bring healing, deliverance, life and many other blessings into the lives of children of God Worldwide
+    </Text>
+    
+  </View>
+    </View>}
+
+
+      <View>
+      <View style={{width:screenWidth,justifyContent:"flex-start"}}>
+        <Text style={{fontSize:30,fontWeight:"bold",color:"grey",margin:30}}>
+          Friday Live Streams
+        </Text>
+      </View>
+       <View elevation={5} style={styles.live}>
+ <TouchableOpacity style={{padding:10,width:screenWidth,justifyContent:"center",alignItems:"center",width:screenWidth,height:screenHeight*0.45}} onPress={()=>{navigation.navigate('Create');}}>
+         <LivePlayer1/>
+    </TouchableOpacity>
+       
+      
+    </View>
+    <View style={{borderWidth:0,padding:30,width:screenWidth}}> 
+      <Text style={{fontSize:20,padding:10}}>
+      Watch SAM TV on friday
+      </Text>
+      <Text style={{padding:10,color:"grey"}}>
+     
+
+      Don't just watch but watch with expectation and God is surely gona meet you at the point of your needs.
+      </Text>
+     
+    </View>
+      </View>
+     
+      <View>
+      <View style={{width:screenWidth,justifyContent:"flex-start"}}>
+        <Text style={{fontSize:30,fontWeight:"bold",color:"grey",margin:30}}>
+          Sunday Live Service
+        </Text>
+      </View>
+       <View elevation={5} style={styles.live}>
+ <TouchableOpacity style={{padding:10,width:screenWidth,justifyContent:"center",alignItems:"center",width:screenWidth,height:screenHeight*0.45}} onPress={()=>{navigation.navigate('Create');}}>
+         <LivePlayer2/>
+    </TouchableOpacity>
+       
+      
+    </View>
+    <View style={{borderWidth:0,padding:30,width:screenWidth}}> 
+      <Text style={{fontSize:20,padding:10}}>
+      Sunday Live Service
+
+
+      </Text>
+      <Text style={{padding:10,color:"grey"}}>
+     
+
+      Don't just watch but watch with expectation and God is surely gona meet you at the point of your needs.
+      </Text>
+     
+    </View>
+    
+      </View>
+
+    <View >
+     
+     
+    </View>
+
+
+
+    
+    <View
+style={{
+  borderBottomColor: 'gainsboro',
+  borderBottomWidth: 0,
+}}
+/>
+
+  
+
+  <View style={{justifyContent:"center",alignItems:"center",height:100}}>
+   
+ 
+   
+   
+               
+ 
+ 
+    
+  </View>
+  

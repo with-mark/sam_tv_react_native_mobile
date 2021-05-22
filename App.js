@@ -13,10 +13,12 @@ const fontColor = "white";
 import Stack from './screens/stack/stack'
 import NotificatonService from './NotificationService'
 import requestUserPermission from './googleNotification';
+import { Store } from './components/async';
 
 const App = ()  => {
+  
 useEffect(()=>{
-    
+    const visited=Store('visited',JSON.stringify(false))
     const run =async()=>{
       await requestUserPermission().then(
         ()=>{

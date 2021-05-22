@@ -12,8 +12,8 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		4D15154E264E9A7900F2E545 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4D15154D264E9A7900F2E545 /* GoogleService-Info.plist */; };
 		4D180D46263BCC6100F53CB0 /* libswiftWebKit.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D180D45263BCC6100F53CB0 /* libswiftWebKit.tbd */; };
-		4DC25F60263B2D7700CB368D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4DC25F5F263B2D7700CB368D /* GoogleService-Info.plist */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		9FBC48417C55557D93782C2E /* libPods-samtvapplication.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C96B0DF2629DD011D31DA8E /* libPods-samtvapplication.a */; };
 /* End PBXBuildFile section */
@@ -45,9 +45,9 @@
 		2B0481AA91DD4FFFBBABE6D5 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		2C95C10E77F84B9DB7C06734 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		34E3471843FC4958B14D94FF /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
+		4D15154D264E9A7900F2E545 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4D180D45263BCC6100F53CB0 /* libswiftWebKit.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswiftWebKit.tbd; path = usr/lib/swift/libswiftWebKit.tbd; sourceTree = SDKROOT; };
 		4D180DD1263C14BE00F53CB0 /* samtvapplication.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = samtvapplication.entitlements; path = samtvapplication/samtvapplication.entitlements; sourceTree = "<group>"; };
-		4DC25F5F263B2D7700CB368D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5C74A19868114826A218D5E2 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		5DB9F155754743508D0704D1 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		6DED0307C655AEB95D2AFF1D /* Pods-samtvapplication-samtvapplicationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-samtvapplication-samtvapplicationTests.release.xcconfig"; path = "Target Support Files/Pods-samtvapplication-samtvapplicationTests/Pods-samtvapplication-samtvapplicationTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -174,7 +174,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				4DC25F5F263B2D7700CB368D /* GoogleService-Info.plist */,
+				4D15154D264E9A7900F2E545 /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* samtvapplication */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* samtvapplicationTests */,
@@ -294,7 +294,7 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				4DC25F60263B2D7700CB368D /* GoogleService-Info.plist in Resources */,
+				4D15154E264E9A7900F2E545 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,7 +548,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = samtvapplication/samtvapplication.entitlements;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8MB4B947YV;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = samtvapplication/Info.plist;
@@ -560,6 +560,7 @@
 					"$(inherited)",
 					"$(SDKROOT)/usr/lib/swift",
 				);
+				MARKETING_VERSION = 1.1;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = samtvapplication;
@@ -576,7 +577,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = samtvapplication/samtvapplication.entitlements;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8MB4B947YV;
 				INFOPLIST_FILE = samtvapplication/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -587,6 +588,7 @@
 					"$(inherited)",
 					"$(SDKROOT)/usr/lib/swift",
 				);
+				MARKETING_VERSION = 1.1;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = samtvapplication;

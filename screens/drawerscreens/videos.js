@@ -42,9 +42,9 @@ const styles = StyleSheet.create({
         color:"grey"
        
       },
-    search:{
-        height:'12%',borderBottomWidth:1,borderColor:"gainsboro",justifyContent:'space-around',alignItems:'center',flexDirection:'row'
-      },
+      search:{
+        position:'relative', height:50,borderBottomWidth:1,borderColor:"gainsboro",justifyContent:'center',alignItems:'center',flexDirection:'row'
+       },
     header:{
         width:'100%',
         borderBottomWidth:1,
@@ -119,8 +119,13 @@ export const Videos = ({navigation}) => {
     getVideos =()=>{
     firestore().collection('videos').doc('cbHueVBOVEk3ioR5AYwA').onSnapshot(
       snapshot=>{
-          let status=snapshot.data()
+          let status=snapshot?snapshot.data():null
+          if(status===null){
+
+          }else{
           setVids(status.allVideos)
+          setFresh(false)
+          }
       }
     )
     
@@ -134,18 +139,21 @@ export const Videos = ({navigation}) => {
       );}
   return(
       <SafeAreaView style={styles.container}>
-          <View style={styles.search}>
+         <View style={styles.search}>
         <View>
         {/* <TextInput onChangeText={(e)=>{setSearch(e),setCancel(true)}} value={search} placeholderTextColor="white" placeholder="Search Videos" style={{fontSize:15,paddingLeft:30,width:screenWidth*0.80,borderRadius:50,borderColor:"rgb(0,122,255)",height:screenHeight*0.055,backgroundColor:"gainsboro"}}  /> */}
-        <Text style={{fontSize:20,width:screenWidth*0.75,}}>Recorded Sermons</Text>
+        <Text style={{fontSize:18,}}>Recorded Sermons</Text>
         </View>
-        <TouchableOpacity onPress={()=>{navigation.navigate('Home')}}>
-        <Text>
-        <MaterialCommunityIcons name="arrow-left" color={"rgb(0,122,255)"} size={30} />
+        <TouchableOpacity style={{position:'absolute',left:10,top:10}} onPress={()=>{navigation.toggleDrawer()}}>
+        <Text >
+        <MaterialCommunityIcons name="menu" color='grey' size={30} />
         </Text>
         </TouchableOpacity>
         </View>
-        <FlatList
+        
+        {
+          vids.length!=0?
+          <FlatList
           data={vids}
           renderItem={renderItem}
           keyExtractor={item => item.title}
@@ -154,8 +162,35 @@ export const Videos = ({navigation}) => {
              getVideos();
         
         }}
+        
         refreshing={fresh}
     />
+          :
+          <View style={{width:screenWidth,height:screenHeight*0.4,display:'flex',justifyContent:'center',alignItems:'center'}}>
+
+            <View style={{ width: screenWidth, height: 150, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <MaterialCommunityIcons color='grey' size={40} name="timer-sand-empty" />
+              <Text style={{ marginTop: 10, color: 'grey' }}>No Videos</Text>
+            </View>
+
+          </View>
+
+
+        }
+
+        <View style={{width:screenWidth,height:95,backgroundColor:'#ffebee'}}>
+          <TouchableOpacity onPress={()=>{navigation.navigate('Create')}} style={{width:'100%',height:'100%',display:'flex',justifyContent:'center',alignItems:'center'}}>
+          <View style={{width:'90%',height:'80%',backgroundColor:'#d32f2f',borderRadius:20,display:'flex',flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
+              <Text style={{color:'white',fontWeight:'bold',}}>Watch The Recent Youtube Live</Text>
+              <View style={{width:60,height:50,backgroundColor:'white',borderRadius:10,display:'flex',justifyContent:'center',alignItems:'center'}}>
+                    <MaterialCommunityIcons size={25} name='play' color='#d32f2f' />
+              </View>
+              
+          </View>
+          </TouchableOpacity>
+
+        </View>
+        
       </SafeAreaView>
      
   )

@@ -12,8 +12,8 @@ const styles = StyleSheet.create({
         flex:1,
     },
     search:{
-        height:screenHeight*0.12,borderBottomWidth:1,borderColor:"gainsboro",justifyContent:'space-around',alignItems:'center',flexDirection:'row'
-      },
+        position:'relative', height:50,borderBottomWidth:1,borderColor:"gainsboro",justifyContent:'center',alignItems:'center',flexDirection:'row'
+       },
     header:{
         width:'100%',
         borderBottomWidth:1,
@@ -27,14 +27,14 @@ const styles = StyleSheet.create({
     },
     announce:{
         padding:15,
-        height:screenHeight*0.35,
         backgroundColor:'white',
         
     },
     events:{
         width:screenWidth,
-        height:screenHeight*0.53,
         padding:15,
+        height:screenHeight*0.62,
+        
         
 
     }
@@ -54,11 +54,14 @@ const Events=({navigation})=>{
 
         }
         getUser()
+        const seen=Store('visited',JSON.stringify(true))
     },[])
     useEffect(()=>{
-        const funcForAll= async ()=>{
-            const allEvents= await  firebase.firestore().collection('Events').onSnapshot(
+        
+            const allEvents= firebase.firestore().collection('Events').onSnapshot(
                 snapshot=>{
+                    if(snapshot!=null){
+                 
                     let everyEvent=[];
                     snapshot.docs.map((s,index)=>{
                         
@@ -70,12 +73,15 @@ const Events=({navigation})=>{
                     
                     })
                     setEvents(everyEvent)
+                }
                     
                 }
 
             )
-            const allAnnounces= await  firebase.firestore().collection('announcements').onSnapshot(
+            const allAnnounces=firebase.firestore().collection('announcements').onSnapshot(
                 snapshot=>{
+                    if(snapshot!=null){
+           
                     let everyAnnouncement=[];
                     snapshot.docs.map((s,index)=>{
                         
@@ -89,12 +95,13 @@ const Events=({navigation})=>{
                     
                     })
                     setAnnouncements(everyAnnouncement)
+
+                     }
                     
                 }
 
             )
-        }
-        funcForAll()
+      
         
     },[])
 
@@ -111,8 +118,8 @@ const  renderAnnounceList = ({item}) => {
         return (
           
                   
-                    <View   style={{backgroundColor:'#ff6251',position:'relative',margin:20,height:'auto',width:screenWidth*0.8,borderRadius:20,padding:10,marginBottom:10,display:'flex',flexDirection:'column',justifyContent:'flex-start'}}>
-                        <View style={{position:'absolute',borderWidth:1,borderColor:'lightgrey',top:-18,left:'48%',height:32,display:'flex',flexDirection:'row',justifyContent:'center',alignItems:'center',width:32,borderRadius:50,backgroundColor:'white',shadowColor:'lightgrey'}}>
+                    <View   style={{backgroundColor:'#ff6251',position:'relative',margin:20,height:'auto',width:screenWidth*0.8,borderRadius:10,padding:20,marginBottom:10,display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
+                        <View style={{position:'absolute',borderWidth:1,borderColor:'lightgrey',top:-18,left:'48%', transform: [{ rotate: "-25deg" }],height:32,display:'flex',flexDirection:'row',justifyContent:'center',alignItems:'center',width:32,borderRadius:50,backgroundColor:'white',shadowColor:'lightgrey'}}>
                         
                         <MaterialCommunityIcons color='grey'  name="bullhorn"  size={22} /> 
                         </View>
@@ -127,8 +134,7 @@ const renderEventList = ({item}) => {
     const found=item.members.indexOf(uid)
     console.log(found)
     return(
-               
-                
+ 
                 <View style={{ position:'relative',backgroundColor:'white',height:'auto',borderRadius:15,padding:15,marginBottom:15,width:'auto',display:'flex',flexDirection:'column',justifyContent:'space-around',alignItems:'flex-start'}}>
                     <MaterialCommunityIcons color='grey' name="calendar"  size={25} /> 
                     <View style={{position:'absolute',top:20,right:25,backgroundColor:'grey',padding:3,borderRadius:10,}}>
@@ -154,17 +160,17 @@ const renderEventList = ({item}) => {
 }
     return(
         <SafeAreaView style={styles.container}>
-             <View style={styles.search}>
-                <View>
-                {/* <TextInput onChangeText={(e)=>{setSearch(e),setCancel(true)}} value={search} placeholderTextColor="white" placeholder="Search Videos" style={{fontSize:15,paddingLeft:30,width:screenWidth*0.80,borderRadius:50,borderColor:"rgb(0,122,255)",height:screenHeight*0.055,backgroundColor:"gainsboro"}}  /> */}
-                <Text style={{fontSize:20,width:screenWidth*0.75,}}>Events</Text>
-                </View>
-                <TouchableOpacity onPress={()=>{navigation.navigate('Home')}}>
-                <Text>
-                <MaterialCommunityIcons name="arrow-left" color={"rgb(0,122,255)"} size={30} />
-                </Text>
-                </TouchableOpacity>
-            </View>
+              <View style={styles.search}>
+        <View>
+        {/* <TextInput onChangeText={(e)=>{setSearch(e),setCancel(true)}} value={search} placeholderTextColor="white" placeholder="Search Videos" style={{fontSize:15,paddingLeft:30,width:screenWidth*0.80,borderRadius:50,borderColor:"rgb(0,122,255)",height:screenHeight*0.055,backgroundColor:"gainsboro"}}  /> */}
+        <Text style={{fontSize:18,}}>Events</Text>
+        </View>
+        <TouchableOpacity style={{position:'absolute',left:10,top:10}} onPress={()=>{navigation.toggleDrawer()}}>
+        <Text >
+        <MaterialCommunityIcons name="menu" color='grey' size={30} />
+        </Text>
+        </TouchableOpacity>
+        </View>
             <View style={styles.announce}>
             <Text style={{fontSize:17,color:'grey',marginBottom:15}}>Announcements</Text>
             <FlatList
@@ -180,10 +186,11 @@ const renderEventList = ({item}) => {
             <View style={styles.events}>
             <Text style={{fontSize:17,color:'grey',marginBottom:15}}>Upcoming Events</Text>
             <FlatList
-                style={{height:screenHeight*0.35}}
+                showsVerticalScrollIndicator={false}
                 data={events}
                 renderItem={renderEventList}
                 keyExtractor={item => item.title}
+                style={{paddingBottom:40}}
             
              />
             </View>

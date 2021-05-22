@@ -4,19 +4,25 @@ const screenWidth = Math.round(Dimensions.get('window').width);
 const screenHeight = Math.round(Dimensions.get('window').height);
 import {Get} from '../../api'
 import { WebView } from 'react-native-webview';
-
+import YouTube from 'react-native-youtube';
 
 function CreateWord({navigation}) {
 
 const [token,setToken] = useState('')
 const [count,setCount] = useState(0)
-
+const [state,setState]=useState({
+  isReady:false,
+  status:'',
+  quality:'',
+  error:''
+})
 const blue = "rgb(0,122,255)"
 
 const check = async() =>{
   const url= "youtube"
   const tokens = await Get(url);
-  setToken(tokens.link)
+  const id=tokens.link.slice(32)
+  setToken(id)
 
 }
 
@@ -33,22 +39,32 @@ return()=>{
 }
 },[count])
 
-
+// eU4992Yo2_s
   return (
    
     <View style={styles.container}>
       <View style={{height:80,backgroundColor:"white",justifyContent:"flex-end",padding:10}}> 
-      <TouchableOpacity onPress={()=>navigation.navigate("HomeInBottomNav")}><Text style={{color:"blue"}}>Go Back </Text></TouchableOpacity>
+      <TouchableOpacity onPress={()=>navigation.goBack()}><Text style={{color:"blue"}}>Go Back </Text></TouchableOpacity>
       </View>
         {
           token?
-          <WebView source={{ uri: token}} />
-          :
-          <View style={{display:'flex',flexDirection:'row',justifyContent:'center',alignItems:'center',height:300}}>
-          <Text>Loading</Text>
-          </View>
-        }
-          
+          // <WebView source={{ uri: token}} />
+          <YouTube
+            videoId={token} // The YouTube video ID
+            play // control playback of video with true/false
+            fullscreen // control whether the video should play in fullscreen or inline
+            //loop // control whether the video should loop when ended
+            onReady={e => setState({ isReady: true })}
+            onChangeState={e => setState({ status: e.state })}
+            
+            onChangeQuality={e => setState({ quality: e.quality })}
+            onError={e => setState({ error: e.error })}
+            style={{ alignSelf: 'stretch', height: screenHeight*0.88 ,backgroundColor:'black'}}
+          />
+        
+        :
+        null
+        } 
         </View>
 
   );
@@ -57,7 +73,8 @@ return()=>{
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor:'white'
+    position:'relative'
+   
   },
   inner: {
     padding: 4,

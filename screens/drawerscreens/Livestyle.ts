@@ -51,7 +51,8 @@ export default StyleSheet.create({
     },
     fullView: {
         width: dimensions.width,
-        height: dimensions.height ,
+        height: dimensions.height,
+        zIndex:2,
     },
     remoteContainer: {
         width: '100%',
@@ -69,4 +70,8 @@ export default StyleSheet.create({
         paddingVertical: 5,
         color: '#0093E9',
     },
+    header:{
+        height:dimensions.height*0.08, display:'flex',alignItems:'center',justifyContent:'center',flexDirection:'row',
+        padding:10,
+    }
 })

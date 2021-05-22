@@ -6,13 +6,13 @@ const screenHeight = Math.round(Dimensions.get('window').height);
 
 const styles = StyleSheet.create({
     container: {
-     borderRadius:40,
       flex: 1,
       backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'center',
       overflow:"hidden",
-      width:screenWidth*0.9,
+      width:screenWidth,
+      
       
     }
   });
@@ -22,12 +22,10 @@ const styles = StyleSheet.create({
 export const LivePlayer = (params) => {
   return(
     
-      <ImageBackground  blurRadius={0.4}
+      <ImageBackground   blurRadius={0.4} 
       source={{uri: 'https://sampsonamoateng.net/wp-content/uploads/2018/08/prof8-458x416.jpg'}} style={styles.container}>
-          <View style={{borderWidth:1,borderRadius:90,borderColor:"orange" ,width:80,height:80,position:'relative',justifyContent:"center",alignItems:"center"}}>
-          <MaterialCommunityIcons  color={"orange"}  name="play-circle-outline"  size={65} />
-                </View>
-               
+          
+            {params.children}   
           
       </ImageBackground>
     

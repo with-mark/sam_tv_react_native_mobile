@@ -161,11 +161,13 @@ getToken = async()=>{
 getLiveStatus=()=>{
     firestore().collection('live').doc('M6zPN7Af72tKczD7i41E').onSnapshot(
         snapshot=>{
+            if(snapshot!=null){
             let status=snapshot.data()
             console.log('changing')
             this.setState({
                 live: status.live,
             })
+        }
         }
     )
 }
@@ -173,11 +175,13 @@ getLiveStatus=()=>{
 quitOnLive=()=>{
     firestore().collection('live').doc('M6zPN7Af72tKczD7i41E').onSnapshot(
         snapshot=>{
+            if(snapshot!=null){
             let status=snapshot.data()
             if (status.live==="offline"){
                 this.endCall()
             }
         }
+    }
     )
 }
 
@@ -204,6 +208,7 @@ getUser = async()=>{
     collection
     .onSnapshot(
       snapshot=>{
+        if(snapshot!=null){
         const fetchedPosts = [];
         snapshot.docs.forEach(post => {
           const fetchedPost = {
@@ -217,7 +222,7 @@ getUser = async()=>{
           this.setState({
             chatMessages:fetchedPosts
           })
-        
+      }
       }
     )
 }
@@ -228,12 +233,12 @@ getUser = async()=>{
     firestore().collection('likes').doc('s8THsrRFqBHssW6MaDag')
     .onSnapshot(
       snapshot=>{
-        
+            if(snapshot!=null){
             this.setState({
             count:snapshot.data().count,
           })
           
-        
+      }
       }
     )
 }
@@ -416,7 +421,7 @@ _renderVideos = () => {
     const {joinSucceed} = this.state
     return joinSucceed ?
         
-        <View style={styles.fullView}>
+        <View style={{...styles.fullView,position:'relative'}}>
               {peerIds.map((value, index, array) => { return(
               
             <RtcRemoteView.SurfaceView
@@ -427,23 +432,16 @@ _renderVideos = () => {
                 
                 )})}
 
-                      <KeyboardAvoidingView  keyboardVerticalOffset={70} behavior={"padding"} style={{ position : "absolute",top:screenHeight*0,flexDirection:"row",justifyContent:"space-around",alignItems:"flex-end",width:screenWidth,backgroundColor:"transparent",bottom:0,left:0,right:0,height:screenHeight*0.9,elevation:1,zIndex:1}} >
-                    <TextInput style={{color:"white",borderColor:"white",borderWidth:1,width:screenWidth*0.7,borderRadius:40,paddingLeft:20,height:50,zIndex:13,elevation:13}} placeholderTextColor="white" placeholder="Comment here"  autoCorrect={false}
-          value={this.state.message}
-          onSubmitEditing={() => this.sendMessage(this.state.message)}
-          onChangeText={message => {
-            this.setState({message});
-          }} />
+                <KeyboardAvoidingView  keyboardVerticalOffset={70} behavior={"padding"} style={{ position : "absolute",flexDirection:"row",justifyContent:"space-around",alignItems:"flex-end",width:screenWidth,backgroundColor:"transparent",bottom:screenHeight*0.08,left:0,right:0,height:screenHeight*0.5,elevation:1,zIndex:1}} >
+                    <TextInput style={{color:"white",borderColor:"white",borderWidth:1,width:screenWidth*0.77,borderRadius:30,paddingLeft:20,height:50,zIndex:13,}} placeholderTextColor="white" placeholder="Comment here"  autoCorrect={false}
+                        value={this.state.message}
+                        onSubmitEditing={() => this.sendMessage(this.state.message)}
+                        onChangeText={message => {
+                            this.setState({message});
+                        }} />
           
        
-                    <TouchableOpacity style={{marginBottom:10,zIndex:13,elevation:13}} onPress={() => this.sendMessage(this.state.message)}><MaterialCommunityIcons  color={"white"} name="send-outline" size={25}/></TouchableOpacity>
-                    <TouchableOpacity style={{zIndex:13,elevation:13}}
-        onPress={() => {this.sendHeart();}}
-      >
-         
-       
-         <MaterialCommunityIcons style={{marginBottom:10}} color={"white"} name="heart-outline" size={25}/>
-      </TouchableOpacity>
+                    <TouchableOpacity style={{marginBottom:10,zIndex:13,elevation:13}} onPress={() => this.sendMessage(this.state.message)}><MaterialCommunityIcons  color={"white"} name="send-outline" size={30}/></TouchableOpacity>
 
       {/* <View style={{borderColor:"white",borderWidth:0,left:screenWidth*0.65, position : "absolute",top:screenHeight*0.34,flexDirection:"row",justifyContent:"space-around",alignItems:"center",width:screenWidth*0.5,height:screenHeight*0.55}}> 
       <FloatingHearts 
@@ -550,6 +548,16 @@ render() {
     return (
      
             <SafeAreaView style={styles.max}>
+             { !this.state.joinSucceed &&  <View style={{...styles.header,display:'flex',zIndex:-1,backgroundColor:'white',position:'relative'}}>
+        <View style={{position:'absolute',top:20,left:15}}>
+        <TouchableOpacity style={{width:screenWidth*0.1,}} onPress={()=>{this.props.navigation.goBack()}}>
+
+        <MaterialCommunityIcons name="chevron-left" color='grey' size={35} />
+       
+        </TouchableOpacity>
+        </View>
+        <Text style={{textTransform:'capitalize',fontSize:18}}>Join Stream</Text>
+        </View>}
                
                 {this._renderButton()}
                 {this._renderVideos()}

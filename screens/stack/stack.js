@@ -2,12 +2,13 @@ import React, { Component,useState,useEffect } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import SignUp from '../stackscreens/signup';
 
-import {Alert ,DeviceEventEmitter} from 'react-native';
+import {ActivityIndicator, Alert ,DeviceEventEmitter,Dimensions,ImageBackground,View} from 'react-native';
 // import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import Login from '../stackscreens/login';
 import DrawerScreen from '../drawernavigator/drawer';
 import {Store,Get} from '../../components/async'
-
+const screenWidth = Math.round(Dimensions.get('window').width);
+const screenHeight = Math.round(Dimensions.get('window').height);
 
 const Root = createStackNavigator();
 
@@ -35,7 +36,11 @@ let devicetoken
 
 
     return (
-      
+      initialRouteName===''?
+        <View style={{height:screenHeight,backgroundColor:'white',width:screenWidth,display:'flex',alignItems:'center',justifyContent:'center'}}>
+           <ImageBackground style={{width:170,height:170}} source={require('../images/sam5.png')}/>
+        </View>
+      :
         <Root.Navigator headerMode={false} initialRouteName={initialRouteName}>
              <Root.Screen  name="Login" component={Login} />
              <Root.Screen name="SignUp" component={SignUp} />

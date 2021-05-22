@@ -12,6 +12,7 @@ export default async function requestUserPermission () {
 getFcmToken = async () => {
   const fcmToken = await messaging().getToken();
   if (fcmToken) {
+    console.log('subscribing')
    subscribe(fcmToken)
   } else {
    console.log("Failed", "No token received");
@@ -33,7 +34,8 @@ subscribe= async (fcmToken)=>{
    body:body
   }).then((response)=>{
    //success
+   console.log('subscribed to topic')
   }).catch((error)=>{
-    //success
+    //error
   })
 }

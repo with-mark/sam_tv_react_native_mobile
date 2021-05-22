@@ -71,15 +71,16 @@ check();
     firebase.firestore().collection('profileImages').doc(response.user.uid)
     .onSnapshot(
       snapshot=>{
-      if(snapshot.data()){ 
-       const src={uri:snapshot.data().profile}
-       const getValue = Store("profile",JSON.stringify(src))
-      }
-      else{
-        console.log('Ive got nothing')
-      }
-      }
-    
+      if(snapshot!=null){
+       if(snapshot.data()){ 
+        const src={uri:snapshot.data().profile}
+        const getValue = Store("profile",JSON.stringify(src))
+        }
+        else{
+          console.log('Ive got nothing')
+        }
+        }
+    }  
     )
     const getValue = Store("user",JSON.stringify(response.user))
     setModalVisible(false) 
@@ -137,9 +138,11 @@ check();
           </View>
         </View>
       </Modal>
-      <Image resizeMode={"contain"} style={{width:100,height:100,padding:0,borderWidth:0,borderColor:"white",marginBottom:20}}  source={require('../images/sam-5.png')} />
+      <ScrollView style={{width:screenWidth,height:screenHeight,display:'flex',flexDirection:'column',}}>
+        <View style={{display:'flex',justifyContent:'center',alignItems:'center',height:screenHeight}}>
+       <Image resizeMode={"contain"} style={{width:100,height:100,padding:0,borderWidth:0,borderColor:"white",marginBottom:20}}  source={require('../images/sam-5.png')} />
       
-        <TextInput value={username}  onChangeText={(e)=>{setUsername(e)}} style={styles.input}  placeholder="email"  placeholderTextColor={"grey"}/>
+       <TextInput value={username}  onChangeText={(e)=>{setUsername(e)}} style={styles.input}  placeholder="email"  placeholderTextColor={"grey"}/>
         <TextInput value={password} onChangeText={(e)=>{setPassword(e)}} style={styles.input} secureTextEntry={true}  placeholder="password" placeholderTextColor={"grey"} />
         <TouchableOpacity onPress={()=> signin()}><View style={styles.button}><Text style={styles.text} >Login</Text></View></TouchableOpacity>
 
@@ -151,6 +154,9 @@ check();
           </TouchableOpacity>
          
         </View>
+        </View>
+       </ScrollView>
+       
      </ImageBackground>
     
     </>
@@ -164,7 +170,7 @@ const styles = StyleSheet.create({
     alignItems:"center",
     height:screenHeight,
     width:screenWidth,
-    paddingBottom:70
+ 
   },
   input:{
       borderWidth:1,

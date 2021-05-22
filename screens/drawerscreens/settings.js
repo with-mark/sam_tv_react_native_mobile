@@ -19,12 +19,12 @@ const blue = "rgb(0,122,255)";
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      position:'relative'
+   
      
     },
     search:{
-      height:80,borderBottomWidth:1,borderColor:"gainsboro",justifyContent:'space-around',alignItems:'center',flexDirection:'row'
-    },
+      position:'relative', height:50,borderBottomWidth:1,borderColor:"gainsboro",justifyContent:'center',alignItems:'center',flexDirection:'row'
+     },
     scrollView: {
         alignItems:'stretch',
         marginHorizontal: 0,
@@ -285,7 +285,7 @@ useEffect(()=>{
   
     Alert.alert(
       'Photo uploaded!',
-      'Your photo has been uploaded to Firebase Cloud Storage!'
+      'Your profile image has been changed'
     );
   
   };
@@ -304,7 +304,9 @@ const logout = async() =>{
   }).catch((error) => {
     // An error happened.
   });
+  navigation.goBack()
   navigation.navigate("Login")
+
 }
 
 
@@ -361,14 +363,14 @@ const onPress=()=>{
 }
   return(
       <SafeAreaView style={styles.container}>
-        <View style={styles.search}>
+       <View style={styles.search}>
         <View>
         {/* <TextInput onChangeText={(e)=>{setSearch(e),setCancel(true)}} value={search} placeholderTextColor="white" placeholder="Search Videos" style={{fontSize:15,paddingLeft:30,width:screenWidth*0.80,borderRadius:50,borderColor:"rgb(0,122,255)",height:screenHeight*0.055,backgroundColor:"gainsboro"}}  /> */}
-        <Text style={{fontSize:20,width:screenWidth*0.75,}}>Edit Profile</Text>
+        <Text style={{fontSize:18,}}>Edit Profile</Text>
         </View>
-        <TouchableOpacity onPress={()=>{navigation.navigate('Home')}}>
-        <Text>
-        <MaterialCommunityIcons name="arrow-left" color={"rgb(0,122,255)"} size={30} />
+        <TouchableOpacity style={{position:'absolute',left:10,top:10}} onPress={()=>{navigation.toggleDrawer()}}>
+        <Text >
+        <MaterialCommunityIcons name="menu" color="grey" size={30} />
         </Text>
         </TouchableOpacity>
         </View>
@@ -390,8 +392,8 @@ const onPress=()=>{
               style={{
                 height: 100,
                 width: 100,
-                backgroundColor:'#008cb4',
-                borderRadius: 15,
+                backgroundColor:'grey',
+                borderRadius: 5,
                 marginRight:20,
                 justifyContent: 'center',
                 alignItems: 'center',
@@ -399,7 +401,7 @@ const onPress=()=>{
              <ImageBackground
              source={image}
              style={{height: 100, width: 100}}
-                imageStyle={{borderRadius: 15}}
+                imageStyle={{borderRadius: 5}}
              >
                 <View
                   style={{
@@ -407,7 +409,7 @@ const onPress=()=>{
                     justifyContent: 'center',
                     alignItems: 'center',
                   }}>
-                     <MaterialCommunityIcons color="#fff" name="camera"  size={35}  
+                     <MaterialCommunityIcons color="#fff" name="camera"  size={25}  
                      style={{
                       opacity: 0.7,
                       alignItems: 'center',

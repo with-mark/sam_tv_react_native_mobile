@@ -15,11 +15,12 @@ const allContacts=[
 ]
 const styles = StyleSheet.create({
     container: {
-        flex:1
+        flex:1,
     },
     search:{
-        height:'12%',borderBottomWidth:1,borderColor:"gainsboro",justifyContent:'space-around',alignItems:'center',flexDirection:'row'
-      },
+        width:screenWidth,
+        position:'relative', height:50,borderBottomWidth:1,borderColor:"gainsboro",justifyContent:'center',alignItems:'center',flexDirection:'row'
+       },
     header:{
         width:'100%',
         borderBottomWidth:1,
@@ -84,16 +85,18 @@ export const Contact = ({navigation}) => {
 
   return(
       <SafeAreaView style={styles.container}>
-             <View style={styles.search}>
-        <View>
-        {/* <TextInput onChangeText={(e)=>{setSearch(e),setCancel(true)}} value={search} placeholderTextColor="white" placeholder="Search Videos" style={{fontSize:15,paddingLeft:30,width:screenWidth*0.80,borderRadius:50,borderColor:"rgb(0,122,255)",height:screenHeight*0.055,backgroundColor:"gainsboro"}}  /> */}
-        <Text style={{fontSize:20,width:screenWidth*0.75,}}>Know the Ministry</Text>
-        </View>
-        <TouchableOpacity onPress={()=>{navigation.navigate('Home')}}>
-        <Text>
-        <MaterialCommunityIcons name="arrow-left" color={"rgb(0,122,255)"} size={30} />
+      <View style={styles.search}>
+      <View style={{position:'absolute',left:10}} >
+        <TouchableOpacity onPress={()=>{navigation.toggleDrawer()}}>
+        <Text >
+        <MaterialCommunityIcons name="menu" color='grey' size={30} />
         </Text>
         </TouchableOpacity>
+        </View>
+            <View>
+            {/* <TextInput onChangeText={(e)=>{setSearch(e),setCancel(true)}} value={search} placeholderTextColor="white" placeholder="Search Videos" style={{fontSize:15,paddingLeft:30,width:screenWidth*0.80,borderRadius:50,borderColor:"rgb(0,122,255)",height:screenHeight*0.055,backgroundColor:"gainsboro"}}  /> */}
+            <Text style={{fontSize:18,}}>Know the Ministry</Text>
+            </View>
         </View>
           <ScrollView style={styles.scrollview}>
           <View style={styles.header}>
@@ -117,35 +120,10 @@ export const Contact = ({navigation}) => {
           
            
            
-           {/* <Text style={{color:blue,lineHeight:25}}>
-               Address:{'\n'}  <Text style={{color:'black',textAlign:'left'}}>House Of Miracle Ministries {"\n"}  P.O.Box MD2155 Madina {"\n "} Accra Ghana</Text>
-           </Text> */}
+           
        </View>
-       <View>
-           <View style={{borderColor:'gainsboro',paddingBottom:30}}>
-
-            
-           <Text style={{color:'#00000095',fontSize:18,lineHeight:25,paddingTop:10,marginLeft:10}}>
-               About The Ministry:{'\n'}
-            </Text>
-            <TouchableOpacity onPress={()=>handleClick('https://sampsonamoateng.net/about-us/')} style={{display:'flex',padding:5,flexDirection:'row',justifyContent:'space-between',alignItems:'center',backgroundColor:blue,height:50}}>
-                  <Text style={{fontSize:15,color:'white'}}>
-                      About Sampson Amoateng Ministries
-                  </Text>
-                  
-                        <Text>
-                            <MaterialCommunityIcons name="chevron-right" color={"white"} size={30} />
-                        </Text>
-                  
-              </TouchableOpacity>
-           </View>
+       
           
-           
-           
-           {/* <Text style={{color:blue,lineHeight:25}}>
-               Address:{'\n'}  <Text style={{color:'black',textAlign:'left'}}>House Of Miracle Ministries {"\n"}  P.O.Box MD2155 Madina {"\n "} Accra Ghana</Text>
-           </Text> */}
-       </View>
 
        </ScrollView>
       </SafeAreaView>

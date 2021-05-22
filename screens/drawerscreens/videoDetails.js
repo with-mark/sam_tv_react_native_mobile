@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text,View,StyleSheet,Dimensions,TouchableOpacity, } from 'react-native';
+import {Text,View,StyleSheet,Dimensions,TouchableOpacity,SafeAreaView } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 // import { VLCPlayer, VlCPlayerView } from 'react-native-vlc-media-player';
 
@@ -15,27 +15,28 @@ itemx:{
     borderColor:"lightgrey",
     backgroundColor:'gainsboro',
     flexDirection:"column",
-    justifyContent:"space-around",
     
     alignItems:"center"
 
 },
 header:{
-    height:screenHeight*0.15,borderBottomWidth:1,borderColor:"gainsboro",justifyContent:'flex-end',alignItems:'flex-start',flexDirection:'column',
-    padding:10
+    height:screenHeight*0.08,borderBottomWidth:1,borderColor:"gainsboro",display:'flex',alignItems:'center',justifyContent:'center',flexDirection:'row',
+    padding:10,
 }
 })
 
 export const VideoDetails=({route,navigation})=>{
     return(
-        <View style={{backgroundColor:'gainsboro',height:screenHeight}}>
-        <View style={{...styles.header,display:'flex',backgroundColor:'white'}}>
+        <SafeAreaView style={{backgroundColor:'gainsboro',height:screenHeight}}>
+        <View style={{...styles.header,display:'flex',backgroundColor:'white',position:'relative'}}>
+        <View style={{position:'absolute',top:10,left:10}}>
         <TouchableOpacity style={{width:screenWidth*0.1,}} onPress={()=>{navigation.goBack()}}>
         <Text>
-        <MaterialCommunityIcons name="close-circle-outline" color={'#b3454c'} size={30} />
+        <MaterialCommunityIcons name="chevron-left" color='grey' size={35} />
         </Text>
         </TouchableOpacity>
-
+        </View>
+        <Text style={{textTransform:'capitalize',fontSize:18}}>{route.params.title}</Text>
         </View>
         <View  style={styles.itemx}>
           
@@ -56,17 +57,18 @@ export const VideoDetails=({route,navigation})=>{
                  
                  
              />  */}
-            <View style={{backgroundColor:'black',position:'absolute',zIndex:-1, width:screenWidth*0.95,height:screenHeight*0.4,borderTopRightRadius:15,borderTopLeftRadius:15 ,display:'flex',justifyContent:'center',alignItems:'center'}}>
+            <View style={{backgroundColor:'black',position:'absolute',zIndex:-1, width:screenWidth,height:screenHeight*0.4,display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <Text style={{color:'white'}}>Loading..</Text>
             </View>
              <Video
                 source={{ uri: route.params.url}}
-                style={{ width:screenWidth*0.95,height:screenHeight*0.4,borderTopRightRadius:15,borderTopLeftRadius:15 }}
+                style={{ width:screenWidth,height:screenHeight*0.4}}
                 controls={true}
+            
                 ref={(ref) => {
                 this.player = ref
                 }} />
-             <View style={{width:screenWidth*0.95,padding:15,backgroundColor:'white',borderBottomLeftRadius:15,borderBottomRightRadius:15,}}>
+             <View style={{width:screenWidth,padding:15,backgroundColor:'white'}}>
              <Text style={{textAlign:'left',fontSize:15,color:'black',textTransform:'capitalize'}}>Theme: {route.params.title}</Text> 
              <View style={{flexDirection:"row"}}>
                  <Text style={{textAlign:'left',fontSize:13,color:'grey',paddingTop:10}}>Date Streamed: {route.params.date.slice(0,15)}</Text> 
@@ -83,7 +85,7 @@ export const VideoDetails=({route,navigation})=>{
             </View>
           
         </View>
-        </View>
+        </SafeAreaView>
       );
       
 }
