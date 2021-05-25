@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
         
     },
     announce:{
-        padding:15,
+        padding:10,
         backgroundColor:'white',
         
     },
@@ -134,8 +134,11 @@ const renderEventList = ({item}) => {
     const found=item.members.indexOf(uid)
     console.log(found)
     return(
+       
+
+        
  
-                <View style={{ position:'relative',backgroundColor:'white',height:'auto',borderRadius:15,padding:15,marginBottom:15,width:'auto',display:'flex',flexDirection:'column',justifyContent:'space-around',alignItems:'flex-start'}}>
+                <View style={{ position:'relative',backgroundColor:'white',height:'auto',borderRadius:15,padding:15,marginBottom:15,display:'flex',flexDirection:'column',justifyContent:'space-around',alignItems:'flex-start'}}>
                     <MaterialCommunityIcons color='grey' name="calendar"  size={25} /> 
                     <View style={{position:'absolute',top:20,right:25,backgroundColor:'grey',padding:3,borderRadius:10,}}>
                         <Text style={{color:'white'}}>{item.members.length<1?'No members':item.members.length==1?'One Member':item.members.length+' '+'members'}</Text>
@@ -155,6 +158,7 @@ const renderEventList = ({item}) => {
                     }
                     
                 </View>
+            
        )
      
 }
@@ -190,7 +194,7 @@ const renderEventList = ({item}) => {
                 data={events}
                 renderItem={renderEventList}
                 keyExtractor={item => item.title}
-                style={{paddingBottom:40}}
+               
             
              />
             </View>
